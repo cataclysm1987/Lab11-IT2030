@@ -1,0 +1,54 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<h2>Lab 11</h2>
+Enter a string: <input type="text" id="dataEntered">
+<button type="button" onclick=AddToArray()>Submit</button>
+<br /><br />
+Search for this: <input type="text" id="search">
+<button type=button" onclick=SearchArray()>Search</button>
+<p id="searchIndex"></p>
+<br /><br />
+<button type="button" id="sort" onclick="SortArray()">Sort the Array</button> <button type="button" id="reverse" onclick="ReverseArray()">Reverse the Array</button> 
+<br /><br />
+<strong>My Array Output</strong><br/>
+<span id="results"> *** </span>
+
+<script>
+    var inputArray = [];
+    $(document).ready(function(){
+        
+    });
+
+    function SortArray(){
+        inputArray.sort();
+        DisplayArray();
+    }
+
+    function SearchArray(){
+        var search = $("#search").val();
+        var index = inputArray.findIndex(element => element.indexOf(search) != -1);
+        if (index != -1){
+            $("#searchIndex").html("Success. Found a match at index: " + index);
+        } else {
+            $("#searchIndex").html("That element was not located within the array.");
+        }
+    }
+
+    function AddToArray(){
+        inputArray.push($("#dataEntered").val());
+        DisplayArray();
+    }
+
+    function ReverseArray(){
+        inputArray.reverse();
+        DisplayArray();
+    }
+
+    function DisplayArray(){
+        $("#results").html(inputArray.toString());
+    }
+</script>
+</body></html>
